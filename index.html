@@ -1,2 +1,296 @@
-# build-in-3d
-Build-in-3d project
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build in 3D | Techfest Project</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #080b18;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #00e5ff;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00e5ff;
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 50px 8%;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .content {
+            max-width: 500px;
+        }
+
+        .content h1 {
+            font-size: clamp(40px, 6vw, 65px);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .content h1 span {
+            color: #00e5ff;
+        }
+
+        .content p {
+            color: #b7c2d8;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #00e5ff;
+            color: #080b18;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .scene {
+            width: 300px;
+            height: 300px;
+            perspective: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cube {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 8s infinite linear;
+        }
+
+        .face {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 2px solid #00e5ff;
+            background: rgba(0, 229, 255, 0.12);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
+        }
+
+        .front  { transform: translateZ(80px); }
+        .back   { transform: rotateY(180deg) translateZ(80px); }
+        .right  { transform: rotateY(90deg) translateZ(80px); }
+        .left   { transform: rotateY(-90deg) translateZ(80px); }
+        .top    { transform: rotateX(90deg) translateZ(80px); }
+        .bottom { transform: rotateX(-90deg) translateZ(80px); }
+
+        @keyframes rotate {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        .about {
+            text-align: center;
+            padding: 60px 8%;
+            background: #10162b;
+        }
+
+        .about h2 {
+            color: #00e5ff;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            color: #b7c2d8;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 50px 8%;
+        }
+
+        .card {
+            background: #141c32;
+            border: 1px solid #263653;
+            padding: 25px;
+            border-radius: 15px;
+            width: 250px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #00e5ff;
+        }
+
+        .card h3 {
+            color: #00e5ff;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #b7c2d8;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #b7c2d8;
+            border-top: 1px solid #263653;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .scene {
+                transform: scale(0.85);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">BUILD<span>3D</span></div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+
+        <div class="content">
+            <h1>Build Your<br><span>3D World</span></h1>
+
+            <p>
+                Explore the future of web development through
+                interactive 3D design, creative animations,
+                and modern digital experiences.
+            </p>
+
+            <a href="#about" class="btn">Explore Project</a>
+        </div>
+
+        <div class="scene">
+            <div class="cube">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face right"></div>
+                <div class="face left"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="about" id="about">
+        <h2>About This Project</h2>
+
+        <p>
+            Build in 3D is a creative web development project
+            that demonstrates CSS-based 3D transformations,
+            animations, responsive design, and interactive
+            user interface elements using HTML and CSS.
+        </p>
+    </section>
+
+    <section class="features" id="features">
+
+        <div class="card">
+            <h3>3D Animation</h3>
+            <p>A rotating 3D cube created using CSS transformations.</p>
+        </div>
+
+        <div class="card">
+            <h3>Modern Design</h3>
+            <p>A futuristic interface with neon colors and smooth effects.</p>
+        </div>
+
+        <div class="card">
+            <h3>Responsive UI</h3>
+            <p>A flexible layout designed for computers and mobile devices.</p>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>Build in 3D | Web Development Project</p>
+        <p>Created for the CA Techfest Project Submission</p>
+    </footer>
+
+</body>
+</html>
+
